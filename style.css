@@ -1,0 +1,605 @@
+:root {
+    --bg: #0e0e16;
+    --card: #191923;
+    --display: #222230;
+    --key: #292936;
+    --key-hover: #39394b;
+    --utility: #343444;
+    --operator: #7655e8;
+    --operator-hover: #8b6af5;
+    --equals: #a58aff;
+    --text: #f5f5fa;
+    --muted: #a3a3b5;
+    --border: rgba(255, 255, 255, 0.07);
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== RESET ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 20px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "DM Sans", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at 50% 18%,
+            rgba(118, 85, 232, 0.16),
+            transparent 43%
+        ),
+        var(--bg);
+}
+
+/* ===== MAIN LAYOUT ===== */
+
+.app-container {
+    width: 100%;
+    max-width: 410px;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: var(--operator);
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.brand h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 25px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.brand p {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 24px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.theme-toggle:hover {
+    background: var(--key-hover);
+    transform: translateY(-2px);
+}
+
+/* ===== CALCULATOR ===== */
+
+.calculator {
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 27px;
+    background: var(--card);
+    box-shadow: 0 20px 55px var(--shadow);
+}
+
+/* ===== DISPLAY ===== */
+
+.display {
+    min-height: 128px;
+    padding: 20px 18px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--display);
+}
+
+.expression {
+    width: 100%;
+    color: var(--muted);
+    font-size: 15px;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.result {
+    display: block;
+    width: 100%;
+    color: var(--text);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(32px, 5vh, 42px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    text-align: right;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ===== KEYPAD ===== */
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.key {
+    min-width: 0;
+    height: 58px;
+    border: none;
+    border-radius: 14px;
+    background: var(--key);
+    color: var(--text);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        background 0.18s ease,
+        transform 0.15s ease,
+        box-shadow 0.18s ease;
+}
+
+.key:hover {
+    background: var(--key-hover);
+    transform: translateY(-2px);
+}
+
+.key:active {
+    transform: scale(0.95);
+}
+
+.key:focus-visible,
+.theme-toggle:focus-visible {
+    outline: 3px solid var(--equals);
+    outline-offset: 3px;
+}
+
+.key.utility {
+    background: var(--utility);
+    color: #d3c8ff;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.key.utility:hover {
+    background: var(--key-hover);
+}
+
+.key.operator {
+    background: var(--operator);
+    color: #fff;
+    font-size: 26px;
+}
+
+.key.operator:hover {
+    background: var(--operator-hover);
+    box-shadow: 0 4px 15px rgba(118, 85, 232, 0.25);
+}
+
+.key.equals {
+    background: var(--equals);
+    color: #171124;
+    font-size: 29px;
+    font-weight: 700;
+}
+
+.key.equals:hover {
+    background: #bba6ff;
+}
+
+/* ===== FOOTER ===== */
+
+.app-footer {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.app-footer p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.app-footer span {
+    display: inline-block;
+    margin-top: 7px;
+    color: #a58aff;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* ===== LIGHT THEME ===== */
+
+body.light-theme {
+    --bg: #f1f2f8;
+    --card: #ffffff;
+    --display: #f2f2fa;
+    --key: #ececf4;
+    --key-hover: #dddded;
+    --utility: #e1dff3;
+    --operator: #7655e8;
+    --operator-hover: #8b6af5;
+    --equals: #a58aff;
+    --text: #202033;
+    --muted: #77778e;
+    --border: rgba(30, 30, 60, 0.08);
+    --shadow: rgba(30, 30, 60, 0.1);
+}
+
+body.light-theme .key.utility {
+    color: #5c43aa;
+}
+
+
+/* ===== SHORT DESKTOP SCREENS ===== */
+
+@media (min-width: 481px) and (max-height: 760px) {
+    body {
+        padding: 12px 16px;
+    }
+
+    .app-header {
+        margin-bottom: 12px;
+    }
+
+    .calculator {
+        padding: 15px;
+    }
+
+    .display {
+        min-height: 105px;
+        padding: 14px 16px;
+        margin-bottom: 12px;
+        gap: 8px;
+    }
+
+    .keypad {
+        gap: 8px;
+    }
+
+    .key {
+        height: clamp(46px, 8vh, 56px);
+    }
+
+    .app-footer {
+        margin-top: 12px;
+    }
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+
+@media (max-width: 480px) {
+    body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 18px 12px;
+        align-items: flex-start;
+    }
+
+    .app-container {
+        width: 100%;
+        max-width: 410px;
+        margin: 0 auto;
+    }
+
+    .app-header {
+        margin-bottom: 14px;
+    }
+
+    .brand {
+        gap: 10px;
+    }
+
+    .brand-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 21px;
+    }
+
+    .brand h1 {
+        font-size: 23px;
+    }
+
+    .calculator {
+        width: 100%;
+        padding: 13px;
+        border-radius: 22px;
+    }
+
+    .display {
+        min-height: 112px;
+        padding: 17px 14px;
+        margin-bottom: 13px;
+        gap: 9px;
+    }
+
+    .expression {
+        font-size: 14px;
+    }
+
+    .result {
+        font-size: clamp(30px, 8vw, 40px);
+    }
+
+    .keypad {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .key {
+        width: 100%;
+        height: clamp(48px, 12vw, 60px);
+        border-radius: 12px;
+        font-size: 20px;
+    }
+
+    .key.utility {
+        font-size: 16px;
+    }
+
+    .key.operator {
+        font-size: 24px;
+    }
+
+    .key.equals {
+        font-size: 27px;
+    }
+
+    .result-actions {
+        flex-wrap: wrap;
+    }
+
+    .app-footer {
+        margin-top: 14px;
+    }
+}
+
+/* ===== EXTRA SMALL PHONES ===== */
+
+@media (max-width: 350px) {
+    body {
+        padding: 12px 8px;
+    }
+
+    .calculator {
+        padding: 10px;
+    }
+
+    .keypad {
+        gap: 6px;
+    }
+
+    .key {
+        height: 46px;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+    .key.operator {
+        font-size: 21px;
+    }
+
+    .display {
+        min-height: 100px;
+        padding: 14px 11px;
+    }
+}
+
+/* ===== SHORT VIEWPORTS ===== */
+
+@media (max-height: 600px) {
+    body {
+        align-items: flex-start;
+        padding-top: 10px;
+        padding-bottom: 12px;
+    }
+
+    .app-header {
+        margin-bottom: 10px;
+    }
+
+    .display {
+        min-height: 85px;
+        padding: 11px 14px;
+        margin-bottom: 10px;
+        gap: 5px;
+    }
+
+    .keypad {
+        gap: 7px;
+    }
+
+    .key {
+        height: 42px;
+    }
+
+    .app-footer {
+        margin-top: 10px;
+    }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none;
+    }
+}
+
+
+
+/* ===== HISTORY AND RESULT ACTIONS ===== */
+
+.result-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.result-actions button,
+.history-header button {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 9px 12px;
+    background: var(--display);
+    color: var(--text);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.result-actions button:hover,
+.history-header button:hover {
+    background: var(--key-hover);
+}
+
+.history-panel {
+    margin-top: 14px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--display);
+}
+
+.history-panel[hidden] {
+    display: none;
+}
+
+.history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.history-header h2 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#historyList {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+#historyList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+#historyList li button {
+    flex-shrink: 0;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 7px;
+    background: var(--key);
+    color: var(--text);
+    cursor: pointer;
+}
+
+
+/* ===== TABLET AND MOBILE VIEWPORT FIX ===== */
+
+@media (max-width: 900px) {
+    body {
+        align-items: flex-start;
+        padding: 24px 14px;
+    }
+
+    .app-container {
+        width: 100%;
+        max-width: 410px;
+        margin: 0 auto;
+    }
+
+    .app-header {
+        margin-bottom: 16px;
+    }
+
+    .calculator {
+        width: 100%;
+    }
+}
+
+/* Compact layout for short available heights */
+@media (max-height: 800px) {
+    body {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .app-header {
+        margin-bottom: 10px;
+    }
+
+    .display {
+        min-height: 100px;
+        padding: 14px;
+        margin-bottom: 12px;
+    }
+
+    .keypad {
+        gap: 8px;
+    }
+
+    .key {
+        height: 48px;
+    }
+
+    .app-footer {
+        margin-top: 12px;
+    }
+}

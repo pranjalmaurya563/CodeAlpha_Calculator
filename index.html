@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#11111b">
+    <meta name="description" content="A modern, responsive calculator for everyday calculations.">
+
+    <title>Calc. | Smart Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="app-container">
+        <header class="app-header">
+            <div class="brand">
+                <span class="brand-icon">C.</span>
+                <div>
+                    <h1>Calc.</h1>
+                    <p>SMART CALCULATOR</p>
+                </div>
+            </div>
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Toggle color theme"
+                title="Toggle theme"
+            >
+                ☼
+            </button>
+        </header>
+
+        <section class="calculator" aria-label="Calculator">
+            <div class="display">
+                <div
+                    class="expression"
+                    id="expression"
+                    aria-live="polite"
+                >Ready to calculate</div>
+
+                <output
+                    class="result"
+                    id="result"
+                    aria-live="polite"
+                >0</output>
+            </div>
+
+            <div class="keypad" id="keypad">
+                <button class="key utility" data-action="clear" type="button">AC</button>
+                <button class="key utility" data-action="delete" type="button">DEL</button>
+                <button class="key utility" data-action="percent" type="button">%</button>
+                <button class="key operator" data-operator="/" type="button" aria-label="Divide">÷</button>
+
+                <button class="key number" data-number="7" type="button">7</button>
+                <button class="key number" data-number="8" type="button">8</button>
+                <button class="key number" data-number="9" type="button">9</button>
+                <button class="key operator" data-operator="*" type="button" aria-label="Multiply">×</button>
+
+                <button class="key number" data-number="4" type="button">4</button>
+                <button class="key number" data-number="5" type="button">5</button>
+                <button class="key number" data-number="6" type="button">6</button>
+                <button class="key operator" data-operator="-" type="button" aria-label="Subtract">−</button>
+
+                <button class="key number" data-number="1" type="button">1</button>
+                <button class="key number" data-number="2" type="button">2</button>
+                <button class="key number" data-number="3" type="button">3</button>
+                <button class="key operator" data-operator="+" type="button" aria-label="Add">+</button>
+
+                <button class="key utility" data-action="sign" type="button">±</button>
+                <button class="key number zero" data-number="0" type="button">0</button>
+                <button class="key number" data-action="decimal" type="button">.</button>
+                <button class="key equals" data-action="calculate" type="button" aria-label="Calculate result">=</button>
+            </div>
+
+            
+            <div class="history-panel" id="historyPanel" hidden>
+                <div class="history-header">
+                    <h2>Recent calculations</h2>
+                    <button id="clearHistory" type="button">Clear</button>
+                </div>
+                <ul id="historyList"></ul>
+            </div>
+
+            <div class="result-actions">
+                <button id="copyResult" type="button">Copy result</button>
+                <button id="toggleHistory" type="button">History</button>
+            </div>
+
+        </section>
+
+        <footer class="app-footer">
+            <p>Designed for everyday calculations</p>
+            <span>HTML · CSS · JavaScript</span>
+        </footer>
+    </main>
+</body>
+</html>
