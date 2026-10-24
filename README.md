@@ -38,7 +38,7 @@ CodeAlpha_Calculator/
 
 1. Clone this repository:
 
-   git clone (https://github.com/pranjalmaurya563/CodeAlpha_Calculator.git)
+   git clone [Repository Link](https://github.com/pranjalmaurya563/CodeAlpha_Calculator.git)
 
 2. Open the project folder in VS Code.
 3. Open index.html using Live Server or your browser.
